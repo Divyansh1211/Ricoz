@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 class CardModel {
   String title;
   String image;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ricoz/productpage.dart';
+import 'package:ricoz/view/productpage.dart';
 
 void main() {
   runApp(const MyApp());

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ricoz/models/card_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:ricoz/view/bottomnav.dart';
@@ -17,6 +18,7 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
   List<CardModel> productcard = [];
+  String? discountedPrice;
 
   Future<void> fetchProducts() async {
     final response =
@@ -49,12 +51,13 @@ class _ProductCardState extends State<ProductCard> {
             child: ListTile(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProductDetail(
-                        productDetail: productcard[index],
-                      ),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductDetail(
+                      productDetail: productcard[index],
+                    ),
+                  ),
+                );
               },
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -130,12 +133,25 @@ class _ProductCardState extends State<ProductCard> {
                           softWrap: true,
                           overflow: TextOverflow.visible,
                         ),
-                        Text(
-                          '${productcard[index].price}\$',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              '${productcard[index].price}\$',
+                              style: const TextStyle(
+                                decoration: TextDecoration.lineThrough,
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            Text(
+                              ' ${discountedPrice = (productcard[index].price - (productcard[index].price * double.parse(productcard[index].discountPercent) / 100)).toStringAsFixed(2)}\$',
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

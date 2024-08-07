@@ -58,16 +58,18 @@ class ProductDetail extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          productDetail.title,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        Expanded(
+                          child: Text(
+                            productDetail.title,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const Spacer(),
                         Text(
-                          '\$${productDetail.price}',
+                          '\$${(productDetail.price - (productDetail.price * double.parse(productDetail.discountPercent) / 100)).toStringAsFixed(2)}',
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
