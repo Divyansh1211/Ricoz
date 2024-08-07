@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ricoz/models/card_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:ricoz/view/bottomnav.dart';
@@ -75,20 +73,24 @@ class _ProductCardState extends State<ProductCard> {
                             ),
                           ),
                         ),
-                        Container(
-                          padding: (const EdgeInsets.all(1)),
-                          width: 45,
-                          height: 25,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.red),
-                          child: Center(
-                            child: Text(
-                              '-${double.parse(productcard[index].discountPercent).toInt().toString()}%',
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600),
+                        Positioned(
+                          top: 8,
+                          left: 8,
+                          child: Container(
+                            padding: (const EdgeInsets.all(1)),
+                            width: 40,
+                            height: 25,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.red),
+                            child: Center(
+                              child: Text(
+                                '-${double.parse(productcard[index].discountPercent).toInt().toString()}%',
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ),
                           ),
                         )
@@ -107,13 +109,12 @@ class _ProductCardState extends State<ProductCard> {
                               size: 15,
                               rating: productcard[index].rating,
                               filledIcon: Icons.star,
-                              halfFilledIcon: Icons.star_outline_outlined,
                               emptyIcon: Icons.star_outline,
                               color: Colors.red,
                               borderColor: Colors.grey,
                             ),
                             Text(
-                              productcard[index].rating.toString(),
+                              '(${productcard[index].rating})',
                               style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey,
@@ -145,7 +146,7 @@ class _ProductCardState extends State<ProductCard> {
                               ),
                             ),
                             Text(
-                              ' ${discountedPrice = (productcard[index].price - (productcard[index].price * double.parse(productcard[index].discountPercent) / 100)).toStringAsFixed(2)}\$',
+                              ' ${(productcard[index].price - (productcard[index].price * double.parse(productcard[index].discountPercent) / 100)).toStringAsFixed(2)}\$',
                               style: const TextStyle(
                                 fontSize: 14,
                                 color: Colors.red,
