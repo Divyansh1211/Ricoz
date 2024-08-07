@@ -51,7 +51,9 @@ class _ProductCardState extends State<ProductCard> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProductDetail(),
+                      builder: (context) => ProductDetail(
+                        productDetail: productcard[index],
+                      ),
                     ));
               },
               title: Row(
